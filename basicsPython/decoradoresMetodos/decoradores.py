@@ -21,6 +21,7 @@ class prueba1(object):
     def area_circulo(self):
         return 3.14*self.radio
 
+        
 def main():
     
     # prueba1.saludo("Fernando")
@@ -28,6 +29,7 @@ def main():
     # p.saludo_static()
     p=prueba1(10)
     print(p.area_circulo)
+
 
  
 if __name__== '__main__':
