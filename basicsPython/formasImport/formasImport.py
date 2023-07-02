@@ -67,3 +67,19 @@
 # La forma en la que pude ejecutar es en consola es :
 
 # C:\Users\Usuario\Desktop\Hacking\basicsPython>python -m modulos.principal
+
+
+
+# *******************************
+
+# basicsPython/
+# ├── paquetes/
+#     └── paquete1/
+# │     └── __init__.py
+# │     └── calculadora_paquete.py
+#     └── principal.py
+
+# En este caso desde principal.py se puede utilizar a los metodos de calculadora_paquete.py utilizando el import de la siguiente forma:
+
+
+# from paquete1 import calculadora_paquete
