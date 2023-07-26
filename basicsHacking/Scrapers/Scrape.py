@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import pandas as pd
 def get_response(url):
     response = requests.get(url)
     html = response.text
@@ -34,11 +34,31 @@ def getClinicName(clinicId):
     url=f'https://{clinicId}.portal.athenahealth.com/'
     soup=getSoup(url=url)
     return  soup.find_all('h1')[-1].text.strip()
+def generateCsv(start,end):
+    master_list=[]
+    try:
+        for clinic_id in range(start,end):
+           data_dict={}
+           data_dict['clinic_id']=clinic_id
+           data_dict['clinic_name']=getClinicName(clinicId=clinic_id)
+           print(data_dict['clinic_name'])
+           if data_dict['clinic_name'] !='Payment Confirmation' and data_dict['clinic_name'] !="Sorry, we can't find that practice. Make sure you typed the right address.":
+            master_list.append(data_dict)
+    except Exception as e:
+        print("An exception occurred:", e)
+    finally:
+        df=pd.DataFrame(master_list)
+        df.to_csv('clinic_data.csv',index=False)
+        print('*******************************')
+        print('TOMA AWITA CTMR TE QUIERO MUCHO')
+
 
 def main():
-    print(getClinicName(clinicId=12695))
-    print(getClinicName(clinicId=12696))
-    print(getClinicName(clinicId=12697))
+    start=12690
+    end=12695
+    generateCsv(start=start,end=end)
+    
+
     
     
 
